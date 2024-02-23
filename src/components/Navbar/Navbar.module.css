@@ -1,0 +1,21 @@
+.nav {
+    grid-area: n;
+    background: #a7b2bb;
+    border: 1px solid #85898de1;
+    padding: 20px;
+}
+
+.item {
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.item:last-child {
+    margin-bottom: 0;
+    margin-top: 40px;
+}
+
+
+.activeLink {
+    color: #9d771e;
+}

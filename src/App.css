@@ -1,0 +1,27 @@
+.app-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+
+    display: grid;
+
+    grid-template-areas:
+		'h h'
+		'n c';
+
+    grid-template-rows: 60px 1fr;
+    grid-template-columns: 2fr 10fr;
+    /* grid-gap: 10px; */
+
+    /*    remove height after footer will done*/
+    min-height: 100vh;
+    background: #e0e0e0;
+    box-shadow:  -5px 0px 25px #c5c4c4,
+                9px 0px 25px #ffffff;
+
+}
+
+.app-wrapper-content {
+    grid-area: c;
+    background: #fff;
+}
+
