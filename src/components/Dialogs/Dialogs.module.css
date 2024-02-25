@@ -11,7 +11,8 @@
     color: #9d771e;
 }
 
-.dialog {}
+.dialog {
+}
 
 .messages {
     padding: 10px;
@@ -21,3 +22,4 @@
 .messages .message {
 
 }
+
