@@ -2,13 +2,6 @@ import Post from "./Post/Post";
 import s from "./MyPosts.module.css";
 
 const MyPosts = (props) => {
-
-  /*TODO: remove posts*/
-  /* let posts = [
-       { id: 1, message: "Hi, how are you", likeCount: 15 },
-       { id: 2, message: "It`s my first post?", likeCount: 32 },
-     ];
-   */
   let postsElements = props.posts.map((post) => (
     <Post id={post.id} message={post.message} likeCount={post.likeCount} />
   ));

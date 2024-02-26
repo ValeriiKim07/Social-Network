@@ -1,0 +1,17 @@
+.friends {
+    display: flex;
+    text-align: center;
+    gap: 0 10px;
+    padding: 10px;
+}
+
+.profileImg{
+    width: 50px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.friendProfileItem {
+    display: flex;
+    flex-direction: column;
+}

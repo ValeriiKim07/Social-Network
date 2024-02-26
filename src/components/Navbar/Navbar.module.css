@@ -19,3 +19,12 @@
 .active {
     color: #9d771e;
 }
+
+
+.menuItem {
+    font-size: 20px;
+}
+.friendsItem div{
+    margin-top: 10px;
+    padding: 0;
+}

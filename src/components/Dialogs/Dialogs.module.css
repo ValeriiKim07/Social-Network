@@ -11,7 +11,9 @@
     color: #9d771e;
 }
 
-.dialog {
+.dialog .profileImg {
+    width: 50px;
+    border-radius: 50%;
 }
 
 .messages {
