@@ -3,7 +3,7 @@ import s from './Friends.module.css'
 
 const Friends = (props) => {
     let friendItems = props.state.map((friend) => (
-      <Friend id={friend.id} name={friend.name} />
+      <Friend key={friend.id} id={friend.id} name={friend.name} />
     ));
     return <div className={s.friends}>{friendItems}</div>;
 };

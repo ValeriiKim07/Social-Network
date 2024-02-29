@@ -3,7 +3,7 @@ const Post = (props) => {
 	return (
 		<div className={s.item}>
 			<img
-				src="https://gamebomb.ru/files/galleries/001/b/b2/413053.jpg"
+				src="https://surl.li/qxzyg"
 				alt=""
 			/>
 			{props.message}
