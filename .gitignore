@@ -1,3 +1,7 @@
 node_modules
 .idea/
 .vscode/
+.prettierrc
+.prettierrc.js
+.prettierrc.json
+.prettierrc.yml

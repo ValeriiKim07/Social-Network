@@ -1,39 +1,48 @@
-import React from "react";
-import s from "./Dialogs.module.css";
-import DialogItem from "./DIalogItem/DialogItem";
-import Message from "./Message/Message";
+import React from 'react';
+import s from './Dialogs.module.css';
+import DialogItem from './DIalogItem/DialogItem';
+import Message from './Message/Message';
+import {
+  sendMessageActionCreator,
+  updateNewMessageText,
+} from '../../redux/state';
 
 const Dialogs = (props) => {
-  let dialogsElements = props.dialogsPage.dialogs.map((dialog) => (
+  let state = props.store.getState().dialogsPage;
+  let dialogsElements = state.dialogs.map((dialog) => (
     <DialogItem key={dialog.id} name={dialog.name} id={dialog.id} />
   ));
-  let messagesElement = props.dialogsPage.messages.map((message) => (
+  let messagesElement = state.messages.map((message) => (
     <Message key={message.id} message={message.message} id={message.id} />
   ));
-  /*TODO: remove all React ref associations*/
-  let newMessageElement = React.createRef();
 
-  let addMessage = () => {
-    props.dispatch({ type: "ADD-MESSAGE" });
+  let sendMessage = () => {
+    props.store.dispatch(sendMessageActionCreator());
   };
 
-  let onMessageChange = () => {
-    let messageText = newMessageElement.current.value;
-    props.dispatch({ type: "UPDATE-NEW-MESSAGE-TEXT", newText: messageText });
+  let onMessageChange = (e) => {
+    let messageText = e.target.value;
+    props.store.dispatch(updateNewMessageText(messageText));
   };
 
   return (
     <div className={s.dialogs}>
       <div className={s.dialogsItems}>{dialogsElements}</div>
-      <div className={s.messages}>{messagesElement}</div>
-      <p>
-        <textarea
-          ref={newMessageElement}
-          onChange={onMessageChange}
-          value={props.dialogsPage.newMessagePost}
-        />
-        <button onClick={addMessage}>send message</button>
-      </p>
+      <div className={s.messages}>
+        <div>{messagesElement}</div>
+        <div>
+          <div>
+            <textarea
+              placeholder="Enter your message"
+              onChange={onMessageChange}
+              value={state.newMessageText}
+            />
+          </div>
+          <div>
+            <button onClick={sendMessage}>Send</button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
