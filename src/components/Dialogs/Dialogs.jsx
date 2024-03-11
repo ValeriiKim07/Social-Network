@@ -4,8 +4,8 @@ import DialogItem from './DIalogItem/DialogItem';
 import Message from './Message/Message';
 import {
   sendMessageActionCreator,
-  updateNewMessageText,
-} from '../../redux/state';
+  updateNewMessageText
+} from '../../redux/dialogsReducer';
 
 const Dialogs = (props) => {
   let state = props.store.getState().dialogsPage;
@@ -33,7 +33,7 @@ const Dialogs = (props) => {
         <div>
           <div>
             <textarea
-              placeholder="Enter your message"
+              placeholder='Enter your mes2ge'
               onChange={onMessageChange}
               value={state.newMessageText}
             />
