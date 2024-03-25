@@ -1,5 +1,6 @@
 import s from './Navbar.module.css';
 import { NavLink } from 'react-router-dom';
+import FriendsContainer from '../Friends/FriendsContainer';
 
 const setActive = ({ isActive }) => (isActive ? s.active : '');
 const Navbar = (props) => {
@@ -35,7 +36,9 @@ const Navbar = (props) => {
           <NavLink className={setActive} to='/friends'>
             <span className={s.menuItem}>Friends</span>
           </NavLink>
-          <div className={s.friendsItem}>{/*<FriendsContainer />*/}</div>
+          <div className={s.friendsItem}>
+            <FriendsContainer />
+          </div>
         </div>
       </div>
     </nav>

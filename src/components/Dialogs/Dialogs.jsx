@@ -4,7 +4,7 @@ import Message from './Message/Message';
 
 const Dialogs = (props) => {
   let state = props.dialogsPage;
-  
+
   let dialogsElements = state.dialogs.map((dialog) => (
     <DialogItem key={dialog.id} name={dialog.name} id={dialog.id} />
   ));
@@ -29,7 +29,7 @@ const Dialogs = (props) => {
         <div>
           <div>
             <textarea
-              placeholder='Enter your mes2ge'
+              placeholder='Enter your message'
               onChange={onMessageChange}
               value={state.newMessageText}
             />

@@ -8,6 +8,7 @@ import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
+import FriendsContainer from './components/Friends/FriendsContainer';
 
 const App = (props) => {
   return (
@@ -23,7 +24,7 @@ const App = (props) => {
           <Route path='/music' element={<Music />} />
           <Route path='/settings' element={<Settings />} />
           {/*TODO: remove '*' in path="/friends/*" */}
-          {/*<Route path='/friends/*' element={<FriendsContainer />} />*/}
+          <Route path='/friends/*' element={<FriendsContainer />} />
         </Routes>
       </div>
     </div>
