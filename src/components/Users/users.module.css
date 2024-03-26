@@ -1,0 +1,44 @@
+.usersContainer {
+    padding: 10px;
+}
+
+.userInfo {
+    max-width: 100px;
+    margin-bottom: 10px;
+}
+
+.userPhoto {
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.followToggle {
+    text-align: center;
+}
+
+.followToggle button {
+    width: 100%;
+}
+
+
+.usersDetails {
+    margin-bottom: 10px;
+}
+
+.userName {
+    font-size: 18px;
+}
+
+.userStatus {
+    color: #969494;
+    font-weight: 600;
+}
+
+.usersLocationDetails {
+    font-size: 16px;
+}
+
+.userCountry {
+    font-size: 14px;
+    font-weight: 300;
+}
