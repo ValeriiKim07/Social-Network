@@ -11,9 +11,9 @@ const usersReducer = (state = initialState, action) => {
       case FOLLOW:
          return {
             ...state,
-            users: state.users.map((user) => {
+            users: state.users.map(user => {
                if (user.id === action.userId) {
-                  return { ...user, followed: true };
+                  return {...user, followed: true};
                }
                return user;
             })
@@ -21,9 +21,9 @@ const usersReducer = (state = initialState, action) => {
       case UNFOLLOW:
          return {
             ...state,
-            users: state.users.map((user) => {
+            users: state.users.map(user => {
                if (user.id === action.userId) {
-                  return { ...user, followed: false };
+                  return {...user, followed: false};
                }
                return user;
             })
@@ -31,7 +31,7 @@ const usersReducer = (state = initialState, action) => {
       case SET_USERS: {
          return {
             ...state,
-            users: [...state.users, ...action.users]
+            users: action.users
          };
       }
       default:
@@ -39,15 +39,15 @@ const usersReducer = (state = initialState, action) => {
    }
 };
 
-export const followAC = (userId) => ({
+export const followAC = userId => ({
    type: FOLLOW,
    userId: userId
 });
-export const unfollowAC = (userId) => ({
+export const unfollowAC = userId => ({
    type: UNFOLLOW,
    userId: userId
 });
-export const setUsersAC = (users) => ({
+export const setUsersAC = users => ({
    type: SET_USERS,
    users: users
 });
