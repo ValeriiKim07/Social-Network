@@ -1,6 +1,7 @@
 import s from './users.module.css';
 import userPhoto from './../../assets/images/naruto.png';
 import React from 'react';
+import {NavLink} from 'react-router-dom';
 
 const Users = props => {
    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
@@ -28,11 +29,17 @@ const Users = props => {
          {props.users.map(user => (
             <div className={s.userContainer} key={user.id}>
                <div className={s.userInfo}>
-                  <img
-                     className={s.userPhoto}
-                     src={user.photos.small != null ? user.photos.small : userPhoto}
-                     alt='user_photo'
-                  />
+                  <NavLink to={'/profile/' + user.id}>
+                     <img
+                        className={s.userPhoto}
+                        src={
+                           user.photos.small != null
+                              ? user.photos.small
+                              : userPhoto
+                        }
+                        alt='user_photo'
+                     />
+                  </NavLink>
 
                   <div className={s.followToggle}>
                      {user.followed ? (
@@ -59,7 +66,9 @@ const Users = props => {
                   </div>
                   <div className={s.usersLocationDetails}>
                      <h4 className={s.userCity}>{'user.location.city'}</h4>
-                     <span className={s.userCountry}>{'user.location.country'}</span>
+                     <span className={s.userCountry}>
+                        {'user.location.country'}
+                     </span>
                   </div>
                </div>
             </div>
