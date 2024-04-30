@@ -2,7 +2,6 @@ import s from './users.module.css';
 import userPhoto from './../../assets/images/naruto.png';
 import React from 'react';
 import {NavLink} from 'react-router-dom';
-import {usersAPI} from '../../api/api';
 
 const Users = props => {
    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
@@ -14,6 +13,7 @@ const Users = props => {
    let currentPageF = currentPage - 5 < 0 ? 0 : currentPage - 5;
    let currentPageL = currentPage + 5;
    let slicedPages = pages.slice(currentPageF, currentPageL);
+
    return (
       <div className={s.usersContainer}>
          <div>
@@ -21,9 +21,7 @@ const Users = props => {
                return (
                   <span
                      key={page}
-                     className={
-                        props.currentPage === page ? s.selectedPage : ''
-                     }
+                     className={props.currentPage === page ? s.selectedPage : ''}
                      onClick={() => props.onPageChanged(page)}>
                      {page}
                   </span>
@@ -36,11 +34,7 @@ const Users = props => {
                   <NavLink to={'/profile/' + user.id}>
                      <img
                         className={s.userPhoto}
-                        src={
-                           user.photos.small != null
-                              ? user.photos.small
-                              : userPhoto
-                        }
+                        src={user.photos.small != null ? user.photos.small : userPhoto}
                         alt='user_photo'
                      />
                   </NavLink>
@@ -48,33 +42,17 @@ const Users = props => {
                   <div className={s.followToggle}>
                      {user.followed ? (
                         <button
-                           disabled={props.followingInProcess.some(
-                              id => id === user.id
-                           )}
+                           disabled={props.inProgress.some(id => id === user.id)}
                            onClick={() => {
-                              props.setFollowingInProcess(true, user.id);
-                              usersAPI.unfollow(user.id).then(data => {
-                                 if (data.resultCode === 0) {
-                                    props.unfollow(user.id);
-                                 }
-                                 props.setFollowingInProcess(false, user.id);
-                              });
+                              props.unfollow(user.id);
                            }}>
                            Unfollow
                         </button>
                      ) : (
                         <button
-                           disabled={props.followingInProcess.some(
-                              id => id === user.id
-                           )}
+                           disabled={props.inProgress.some(id => id === user.id)}
                            onClick={() => {
-                              props.setFollowingInProcess(true, user.id);
-                              usersAPI.follow(user.id).then(data => {
-                                 if (data.resultCode === 0) {
-                                    props.follow(user.id);
-                                 }
-                                 props.setFollowingInProcess(false, user.id);
-                              });
+                              props.follow(user.id);
                            }}>
                            Follow
                         </button>
@@ -88,9 +66,7 @@ const Users = props => {
                   </div>
                   <div className={s.usersLocationDetails}>
                      <h4 className={s.userCity}>{'user.location.city'}</h4>
-                     <span className={s.userCountry}>
-                        {'user.location.country'}
-                     </span>
+                     <span className={s.userCountry}>{'user.location.country'}</span>
                   </div>
                </div>
             </div>
