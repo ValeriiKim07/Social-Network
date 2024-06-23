@@ -4,6 +4,7 @@ import {required} from '../utils/validators/validatirs';
 import {connect} from 'react-redux';
 import {login} from '../redux/authReducer';
 import {Navigate} from 'react-router-dom';
+import s from './../components/common/FormsControll/FormsControll.module.css';
 
 const LoginForm = props => {
    return (
@@ -23,6 +24,7 @@ const LoginForm = props => {
          <div>
             <Field type={'checkbox'} name={'rememberMe'} component={Input} /> remember me
          </div>
+         {props.error && <div className={s.formSummaryError}>{props.error}</div>}
          <div>
             <button>Login</button>
          </div>
