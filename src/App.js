@@ -1,7 +1,7 @@
 import './App.css';
 import './nullstyle.css';
 import Navbar from './components/Navbar/Navbar';
-import {Navigate, Route, Routes} from 'react-router-dom';
+import {Route, Routes, useParams} from 'react-router-dom';
 import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
@@ -11,10 +11,17 @@ import UsersContainer from './components/Users/UsersContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
 import Login from './Login/Login';
-import {Component} from 'react';
+import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {initializeApp} from './redux/appReducer';
 import Preloader from './components/common/Preloader/Preloader';
+import {compose} from 'redux';
+
+const withRouter = WrappedComponent => props => {
+   const params = useParams();
+
+   return <WrappedComponent {...props} params={params} />;
+};
 
 class App extends Component {
    componentDidMount() {
@@ -31,7 +38,6 @@ class App extends Component {
             <Navbar />
             <div className='app-wrapper-content'>
                <Routes>
-                  <Route path='' element={<Navigate to='/profile/' />} />
                   <Route path='/profile/:userId?' element={<ProfileContainer />} />
                   {/*TODO: remove '*' in path="/dialogs/*" */}
                   <Route path='/dialogs/*' element={<DialogsContainer />} />
@@ -53,4 +59,4 @@ const mapStateToProps = state => ({
    initialized: state.app.initialized
 });
 
-export default connect(mapStateToProps, {initializeApp})(App);
+export default compose(withRouter, connect(mapStateToProps, {initializeApp}))(App);
