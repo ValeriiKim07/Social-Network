@@ -1,29 +1,33 @@
-import s from './ProfileInfo.module.css';
-import Preloader from '../../common/Preloader/Preloader';
-import ProfileStatus from './ProfileStatus';
-import ProfileStatusWithHooks from './ProfileStatusWithHooks';
+import s from "./ProfileInfo.module.css";
+import Preloader from "../../common/Preloader/Preloader";
+import ProfileStatus from "./ProfileStatus";
+import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
+import React from "react";
 
-const ProfileInfo = props => {
-   if (!props.profile) {
-      return <Preloader />;
-   }
-   return (
+const ProfileInfo = (props) => {
+  if (!props.profile) {
+    return <Preloader />;
+  }
+  return (
+    <div>
       <div>
-         <div>
-            {/*<img
+        {/*<img
                className={s.image}
                src='https://images.ctfassets.net/hrltx12pl8hq/7yQR5uJhwEkRfjwMFJ7bUK/dc52a0913e8ff8b5c276177890eb0129/offset_comp_772626-opt.jpg?fit=fill&w=800&h=300'
                alt=''
             />*/}
-         </div>
-         <div className={s.descriptionBlock}>
-            <img src={props.profile.photos.large} alt='' />
-            <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus} />
-            <p>{props.profile.fullName}</p>
-            <p>{props.profile.aboutMe}</p>
-         </div>
       </div>
-   );
+      <div className={s.descriptionBlock}>
+        <img src={props.profile.photos.large} alt="" />
+        <ProfileStatusWithHooks
+          status={props.status}
+          updateStatus={props.updateStatus}
+        />
+        <p>{props.profile.fullName}</p>
+        <p>{props.profile.aboutMe}</p>
+      </div>
+    </div>
+  );
 };
 
 export default ProfileInfo;
