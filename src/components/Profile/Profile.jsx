@@ -1,13 +1,17 @@
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
+import Preloader from "../common/Preloader/Preloader";
 
-const Profile = (props) => {
+const Profile = ({ profile, status, updateStatus }) => {
+  if (!profile) {
+    return <Preloader />;
+  }
   return (
     <div>
       <ProfileInfo
-        profile={props.profile}
-        status={props.status}
-        updateStatus={props.updateStatus}
+        profile={profile}
+        status={status}
+        updateStatus={updateStatus}
       />
       <MyPostsContainer />
     </div>
