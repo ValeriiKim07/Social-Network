@@ -1,23 +1,39 @@
 import s from "./ProfileInfo.module.css";
 import Preloader from "../../common/Preloader/Preloader";
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
-import React from "react";
+import React, { useState } from "react";
+import mainImage from "./../../../assets/images/149071.png";
 
 const ProfileInfo = (props) => {
+  const [imageLoaded, setImageLoaded] = useState(false);
+
   if (!props.profile) {
     return <Preloader />;
   }
+
+  const handleImageLoad = () => {
+    setImageLoaded(true);
+  };
+
+  const onMainPhotoSelected = (e) => {
+    if (e.target.files.length) {
+      props.savePhoto(e.target.files[0]);
+    }
+  };
+
   return (
     <div>
-      <div>
-        {/*<img
-               className={s.image}
-               src='https://images.ctfassets.net/hrltx12pl8hq/7yQR5uJhwEkRfjwMFJ7bUK/dc52a0913e8ff8b5c276177890eb0129/offset_comp_772626-opt.jpg?fit=fill&w=800&h=300'
-               alt=''
-            />*/}
-      </div>
       <div className={s.descriptionBlock}>
-        <img src={props.profile.photos.large} alt="" />
+        {!imageLoaded && <Preloader />}
+        <img
+          className={s.mainPhoto}
+          src={props.profile.photos.large || mainImage}
+          alt=""
+          onLoad={handleImageLoad}
+        />
+        {props.isOwner && (
+          <input type={"file"} onChange={onMainPhotoSelected} />
+        )}
         <ProfileStatusWithHooks
           status={props.status}
           updateStatus={props.updateStatus}
