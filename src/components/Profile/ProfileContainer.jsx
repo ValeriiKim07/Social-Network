@@ -6,6 +6,7 @@ import {
   savePhoto,
   setUserProfile,
   updateStatus,
+  saveProfile,
 } from "./../../redux/profileReducer";
 import { useParams } from "react-router-dom";
 import { compose } from "redux";
@@ -45,6 +46,7 @@ class ProfileContainer extends React.Component {
         status={this.props.status}
         updateStatus={this.props.updateStatus}
         savePhoto={this.props.savePhoto}
+        saveProfile={this.props.saveProfile}
       />
     );
   }
@@ -63,6 +65,7 @@ export default compose(
     getStatus,
     updateStatus,
     savePhoto,
+    saveProfile,
   }),
   withRouter,
   WithAuthRedirect,
