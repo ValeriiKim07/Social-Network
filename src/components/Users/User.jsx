@@ -3,9 +3,9 @@ import userPhoto from "./../../assets/images/naruto.png";
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-const User = ({ user, inProgress, unfollow, follow }) => {
+const User = ({ user, inProgress, unfollow, follow, key }) => {
   return (
-    <div>
+    <div key={user.id}>
       <div className={s.userInfo}>
         <NavLink to={"/profile/" + user.id}>
           <img

@@ -1,16 +1,26 @@
 import s from "./Paginator.module.css";
 import React, { useState } from "react";
+import cn from "classnames";
 
-const Paginator = ({
-  totalUsersCount,
-  pageSize,
-  currentPage,
-  onPageChanged,
-  portionSize = 10,
-}) => {
-  let pagesCount = Math.ceil(totalUsersCount / pageSize);
+type Props = {
+  totalUsersCount: number;
+  pageSize: number;
+  currentPage: number;
+  onPageChanged: (pageNumber: number) => void;
+  portionSize?: number;
+};
+const Paginator = (props: Props): JSX.Element => {
+  const {
+    totalUsersCount,
+    pageSize,
+    currentPage,
+    onPageChanged,
+    portionSize = 10,
+  } = props;
 
-  let pages = [];
+  let pagesCount: number = Math.ceil(totalUsersCount / pageSize);
+
+  let pages: number[] = [];
   for (let i = 1; i <= pagesCount; i++) {
     pages.push(i);
   }
@@ -21,7 +31,7 @@ const Paginator = ({
   let rightPageNubmer = portionNumber * portionSize;
 
   return (
-    <div className={s.paginator}>
+    <div className={cn(s.paginator)}>
       {portionNumber > 1 && (
         <button onClick={() => setPortionNumber(portionNumber - 1)}>
           Prev
@@ -33,7 +43,7 @@ const Paginator = ({
           return (
             <span
               key={p}
-              className={`${currentPage === p ? s.selectedPage : ""} ${s.page}`}
+              className={cn({ [s.selectedPage]: currentPage === p }, s.page)}
               onClick={() => onPageChanged(p)}
             >
               {p}

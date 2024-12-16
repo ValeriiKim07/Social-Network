@@ -2,6 +2,18 @@ import s from "./users.module.css";
 import React from "react";
 import Paginator from "../common/Paginator/Paginator";
 import User from "./User";
+import { UserType } from "@/types/types.ts";
+
+type Props = {
+  totalUsersCount: number;
+  pageSize: number;
+  currentPage: number;
+  onPageChanged: (pageNumber: number) => void;
+  users: UserType[];
+  inProgress: boolean;
+  unfollow: (userId: number) => void;
+  follow: (userId: number) => void;
+};
 
 const Users = ({
   totalUsersCount,
@@ -12,7 +24,7 @@ const Users = ({
   inProgress,
   unfollow,
   follow,
-}) => {
+}: Props): React.JSX.Element => {
   return (
     <div className={s.usersContainer}>
       <Paginator

@@ -1,7 +1,13 @@
 import "./App.css";
 import "./nullstyle.css";
 import Navbar from "./components/Navbar/Navbar";
-import { HashRouter, Route, Routes, useParams } from "react-router-dom";
+import {
+  BrowserRouter,
+  Navigate,
+  Route,
+  Routes,
+  useParams,
+} from "react-router-dom";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
@@ -14,7 +20,6 @@ import { initializeApp } from "./redux/appReducer";
 import Preloader from "./components/common/Preloader/Preloader";
 import { compose } from "redux";
 import store from "./redux/reduxStore";
-import WithSuspense from "./hoc/withSuspense";
 
 const DialogsContainer = lazy(
   () => import("./components/Dialogs/DialogsContainer"),
@@ -33,8 +38,21 @@ const withRouter = (WrappedComponent) => (props) => {
 };
 
 class App extends Component {
+  catchAllUnhandledErrors = (promiseRejectionEvent) => {
+    alert("Some error uccured");
+  };
+
   componentDidMount() {
     this.props.initializeApp();
+
+    window.addEventListener("unhandledrejection", this.catchAllUnhandledErrors);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener(
+      "unhandledrejection",
+      this.catchAllUnhandledErrors,
+    );
   }
 
   render() {
@@ -51,13 +69,18 @@ class App extends Component {
               <Route path="/profile/:userId?" element={<ProfileContainer />} />
               {/*TODO: remove '*' in path="/dialogs/*" */}
               <Route path="/dialogs/*" element={<DialogsContainer />} />
-              <Route path="/users/" element={<UsersContainer />} />
+              <Route
+                path="/users/"
+                element={<UsersContainer pageTitle={"Kim"} />}
+              />
               <Route path="/news" element={<News />} />
               <Route path="/music" element={<Music />} />
               <Route path="/settings" element={<Settings />} />
               {/*TODO: remove '*' in path="/friends/*" */}
               <Route path="/friends/*" element={<FriendsContainer />} />
               <Route path="/login/*" element={<Login />} />
+              <Route path="*" element={<div>404 NOT FOUND</div>} />
+              <Route path="/" element={<Navigate to={"/profile"} />} />
             </Routes>
           </Suspense>
         </div>
@@ -77,11 +100,11 @@ let AppContainer = compose(
 
 let MainApp = (props) => {
   return (
-    <HashRouter>
+    <BrowserRouter basename={"Social-Network"}>
       <Provider store={store}>
         <AppContainer />
       </Provider>
-    </HashRouter>
+    </BrowserRouter>
   );
 };
 

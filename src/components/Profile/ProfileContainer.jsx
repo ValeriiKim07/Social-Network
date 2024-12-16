@@ -7,7 +7,7 @@ import {
   setUserProfile,
   updateStatus,
   saveProfile,
-} from "./../../redux/profileReducer";
+} from "../../redux/profileReducer";
 import { useParams } from "react-router-dom";
 import { compose } from "redux";
 import { WithAuthRedirect } from "../../hoc/withAuthRedirect";
